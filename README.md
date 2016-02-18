@@ -1,6 +1,6 @@
 # WavelabsClientApi
 
-Welcome to "wavelabs_client_api" gem. This gem is a wrapper to communicate with Wavelabs Server API. Using this wrapper we can easily send request to Wavelabs Server API. This release supports only User Registration Module:
+Welcome to "wavelabs_client_api" gem. It is flexible wrapper to communicate with Wavelabs Server API. Using this library you can easily interact with Wavelabs Server API. This release supports User Registration Module:
 
     1. Sign Up
     2. Sign In
@@ -10,16 +10,21 @@ Welcome to "wavelabs_client_api" gem. This gem is a wrapper to communicate with 
     6. Upload Profile Picture
     7. Social Sign Up(Login with facebook, github ..etc)
 
-This library is used to send requests to Wavelabs Server API and get response. It depends on 'ruby-2.2.3' and activemodel-4.2.4', 'httmultiparty-0.3.16' gems. 
+This library is used to send requests to Wavelabs Server API and get response. Following are the run time dependencies
+    
+    1. ruby-2.2.3
+    2. activemodel-4.2.4
+    3. httmultiparty-0.3.16 
 
-There is an example rails application in github https://github.com/nbostech/wavelabs-rails-client-api. You can clone and use that application. Live example is available on heroku
- https://wavelabs-rails-client-api.herokuapp.com.
+There is an example rails application in github https://github.com/nbostech/wavelabs-rails-client-api. You can clone and use that application. 
 
-This wrapper contains two main modules under /lib directory
+Live example is available on heroku https://wavelabs-rails-client-api.herokuapp.com
 
- 1. WaveLabsClientApi::Client::Api::Core which have the classes to send requests.
- 2. WaveLabsClientApi::Client::Api::DataModels which have the ActiveModel classes
-    to create model objects based on server response.
+This gem contains two main modules under /lib directory
+
+ 1. WaveLabsClientApi::Client::Api::Core which have the classes to handle server communication.
+
+ 2. WaveLabsClientApi::Client::Api::DataModels which have the ActiveModel classes to create model objects.
 
 
 ## Installation
@@ -40,9 +45,8 @@ Or install it yourself as:
 
 ## Usage
 
-  After installing the gem you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
+ After installing the gem you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
 
-    ```ruby
     ### WaveLabs Server Details 
     ENV['API_HOST_URL']  = 'http://111.93.2.105:8080/starter-app-rest-grails'
     ENV['API_CLIENT_ID'] = 'my-client'
@@ -63,7 +67,7 @@ Or install it yourself as:
 
     ENV['INSTAGRAM_KEY'] = 'INSTAGRAM APP KEY'
     ENV['INSTAGRAM_SECRET'] = 'INSTAGRAM APP KEY'
-    ```
+
 
   There are many ways to setup the ENV variables in rails. You can directly add them into your environment specific rb file, for example 'config/enviroments/development.rb' or you can use 'dot-env'/'figaro' gems.
 
@@ -71,7 +75,6 @@ Or install it yourself as:
 
   Now you are ready to communicate with the Server. Following is an example to send a sign_up request from ruby console:
 
-     ```ruby
      $request = WavelabsClientApi::Client::Api::Core::UsersApi.new
      $sign_up_params = { :username  =>  "username",
                         :password  =>  "password123",
@@ -80,7 +83,7 @@ Or install it yourself as:
                         :lastName  =>  "last name"
                       }
      $response = request.sign_up(sign_up_params)
-     ```
+
    You will get the approprivate response from server. If you want use this gem in your rails application use this link https://github.com/nbostech/wavelabs-rails-client-api
    
 ## To-Do

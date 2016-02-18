@@ -88,11 +88,13 @@ Or install it yourself as:
    
 ## To-Do
 
- Need to add test cases. And continuous changes will be made based on Wavelabs Server API architecture. There are other modules will come soon:
+ 1. Need to add test cases. 
+ 2. And continuous changes will be made based on Wavelabs Server API architecture. 
+ 3. There are other modules will come soon:
      
-     1. Tenant Module
-     2. Entity Authorization
-     3. Payment Module
+     a). Tenant Module
+     b). Entity Authorization
+     c). Payment Module
 
 ## Development
 

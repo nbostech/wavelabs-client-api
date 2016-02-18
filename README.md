@@ -12,8 +12,8 @@ Welcome to "wavelabs_client_api" gem. This gem is a wrapper to communicate with 
 
 This library is used to send requests to Wavelabs Server API and get response. It depends on 'ruby-2.2.3' and activemodel-4.2.4', 'httmultiparty-0.3.16' gems. 
 
-There is an example rails application in github "https://github.com/nbostech/wavelabs-rails-client-api". You can clone and use that application. Live example is available on heroku
- "https://wavelabs-rails-client-api.herokuapp.com".
+There is an example rails application in github https://github.com/nbostech/wavelabs-rails-client-api. You can clone and use that application. Live example is available on heroku
+ https://wavelabs-rails-client-api.herokuapp.com.
 
 This wrapper contains two main modules under /lib directory
 
@@ -42,6 +42,7 @@ Or install it yourself as:
 
   After installing the gem you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
 
+    ```ruby
     ### WaveLabs Server Details 
     ENV['API_HOST_URL']  = 'http://111.93.2.105:8080/starter-app-rest-grails'
     ENV['API_CLIENT_ID'] = 'my-client'
@@ -62,6 +63,7 @@ Or install it yourself as:
 
     ENV['INSTAGRAM_KEY'] = 'INSTAGRAM APP KEY'
     ENV['INSTAGRAM_SECRET'] = 'INSTAGRAM APP KEY'
+    ```
 
   There are many ways to setup the ENV variables in rails. You can directly add them into your environment specific rb file, for example 'config/enviroments/development.rb' or you can use 'dot-env'/'figaro' gems.
 
@@ -69,20 +71,22 @@ Or install it yourself as:
 
   Now you are ready to communicate with the Server. Following is an example to send a sign_up request from ruby console:
 
-     request = WavelabsClientApi::Client::Api::Core::UsersApi.new
-     sign_up_params = { :username  =>  "username",
+     ```ruby
+     $request = WavelabsClientApi::Client::Api::Core::UsersApi.new
+     $sign_up_params = { :username  =>  "username",
                         :password  =>  "password123",
                         :email     =>  "username@test.com",
                         :firstName =>  "first name",
                         :lastName  =>  "last name"
                       }
-     response = request.sign_up(sign_up_params)
-     
-   You will get the approprivate response from server. If you want use this gem in your rails application use this link 'https://github.com/nbostech/wavelabs-rails-client-api'
+     $response = request.sign_up(sign_up_params)
+     ```
+   You will get the approprivate response from server. If you want use this gem in your rails application use this link https://github.com/nbostech/wavelabs-rails-client-api
    
 ## To-Do
 
  Need to add test cases. And continuous changes will be made based on Wavelabs Server API architecture. There are other modules will come soon:
+     
      1. Tenant Module
      2. Entity Authorization
      3. Payment Module

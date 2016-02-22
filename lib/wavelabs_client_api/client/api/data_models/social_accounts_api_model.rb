@@ -9,8 +9,8 @@ class WavelabsClientApi::Client::Api::DataModels::SocialAccountsApiModel < Wavel
 
   attr_accessor :id, :email, :social_type, :image_url
 
-  def initialize(social_params)
-    if social_params.presence
+  def initialize(social_params = nil)
+    if social_params.present?
       @id = social_params["id"]
       @email = social_params["email"]
       @social_type = social_params["socialType"]

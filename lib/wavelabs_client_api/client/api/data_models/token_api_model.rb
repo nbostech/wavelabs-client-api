@@ -5,8 +5,8 @@
 class WavelabsClientApi::Client::Api::DataModels::TokenApiModel
   attr_accessor :value, :expires_in, :refresh_token, :scope, :token_type
 
-  def initialize(token_params)
-  	if token_params.presence 
+  def initialize(token_params = nil)
+  	if token_params.present? 
 	    @value = token_params["access_token"],
 	    @expires_in = token_params["expires_in"],
 	    @refresh_token = token_params["refresh_token"],

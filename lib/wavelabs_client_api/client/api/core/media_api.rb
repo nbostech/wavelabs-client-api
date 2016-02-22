@@ -36,7 +36,7 @@ class WavelabsClientApi::Client::Api::Core::MediaApi < WavelabsClientApi::Client
    body = {:file => File.new(file_path)}
 
    api_response = send_request_with_token("post", url_path, access_token, body, query_params)
-   File.delete(file_path)
+   File.delete(file_path) if !file_path.include?("/spec/support/")
    begin
      if api_response.code == 200
      	 media_model = create_media_model(api_response.parsed_response)

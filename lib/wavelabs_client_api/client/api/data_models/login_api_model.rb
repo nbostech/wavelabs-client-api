@@ -10,7 +10,7 @@ class WavelabsClientApi::Client::Api::DataModels::LoginApiModel < WavelabsClient
   attr_accessor :username, :password, :email, :firstName, :lastName, :phone, :newPassword, :message
 
   def initialize(login_params = nil)
-    if login_params.presence
+    if login_params.present?
       @username = login_params["username"]
       @password = login_params["password"]
       @email = login_params["email"]

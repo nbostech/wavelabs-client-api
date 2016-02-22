@@ -63,7 +63,10 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
 
 
  # Api Call To Login 
- def login(login_params)
+ def login(login_params = nil)
+  login_model = create_login_model(login_params)
+
+  if login_params.present? && check_login_params(login_params)
  	 url_path = base_api_url(LOGIN_URI)
  	 connection_options = { :clientId => client_id, 
  	 	                      :username => login_params[:username], 
@@ -71,7 +74,6 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
  	 	                    }
    api_response = send_request('post', url_path, connection_options)
 
-   login_model = create_login_model(login_params)
    begin
      if api_response.code == 200
         member_model = create_member_model(api_response.parsed_response, false)
@@ -86,7 +88,12 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
    rescue StandardError
      login_model.message = "Internal Server Error Please Try After Some Time."
      { status: 500, login: login_model}
-   end 
+   end
+
+  else
+    login_model.message = "Invalid login parameters"
+    { status: 500, login: login_model}
+  end  
 
  end
 
@@ -117,5 +124,14 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
  def reset_password
  	 url_path = base_api_url(RESET_PASSWORD_URI)
  end
+
+
+ def check_login_params(login_params)
+   if login_params.length == 2 && [:username, :password] == login_params.keys
+     true
+   else
+     false
+   end 
+ end 
 
 end	

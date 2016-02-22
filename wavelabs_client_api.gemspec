@@ -30,6 +30,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'httmultiparty', "0.3.16"
   spec.add_dependency 'activemodel', "4.2.4"
+  
+  spec.add_development_dependency "byebug"
+  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "rspec"
+
+
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
 end

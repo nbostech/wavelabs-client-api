@@ -18,7 +18,7 @@ class WavelabsClientApi::Client::Api::Core::UsersApi < WavelabsClientApi::Client
                           :email     =>  sign_up_params[:email],
                           :firstName =>  sign_up_params[:firstName],
                           :lastName  =>  sign_up_params[:lastName]
-                        }                   
+                        }                  
    api_response = send_request('post', url_path, connection_options)
    
    new_member_model =  create_login_model(sign_up_params)

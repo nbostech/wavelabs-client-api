@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   # end
   
   #spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  spec.files         = Dir.glob("{bin,lib, spec}/**/*") + %w(LICENSE.txt README.md)
+  spec.files         = Dir.glob("{bin,lib,spec}/**/*") + %w(LICENSE.txt README.md) + `git ls-files -z`.split("\x0")
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

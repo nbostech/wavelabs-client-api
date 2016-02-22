@@ -127,7 +127,8 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
 
 
  def check_login_params(login_params)
-   if login_params.length == 2 && [:username, :password] == login_params.keys
+
+   if login_params.length == 2 && [:username, :password] == login_params.keys || ["username", "password"] == login_params.keys
      true
    else
      false

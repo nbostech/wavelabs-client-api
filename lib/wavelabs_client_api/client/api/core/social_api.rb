@@ -17,7 +17,7 @@ class WavelabsClientApi::Client::Api::Core::SocialApi < WavelabsClientApi::Clien
 
  
 
-def login(social_params, provider)
+def login(social_params, provider, access_token)
   social_uri = get_scoial_login_uri(provider)
   url_path = base_api_url(social_uri)
 
@@ -25,7 +25,7 @@ def login(social_params, provider)
                           :accessToken => social_params[:credentials][:token], 
                           :expiresIn => "#{social_params[:credentials][:expires_at]}"
                         }
-   api_response = send_request('post', url_path, connection_options)
+   api_response = send_request_with_token('post', url_path, access_token, connection_options.to_json)
    
 
    if api_response.parsed_response["message"].present?

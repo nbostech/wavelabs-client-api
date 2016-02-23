@@ -4,6 +4,7 @@ describe WavelabsClientApi::Client::Api::Core::UsersApi do
 
   let (:user_api_obj) { WavelabsClientApi::Client::Api::Core::UsersApi.new}
   let (:user_api) { WavelabsClientApi::Client::Api::Core::UsersApi}
+  let(:get_initial_token) {UserSignUp.get_token}
 
   let(:login_user) {UserSignUp.login_user}
   
@@ -25,7 +26,7 @@ describe WavelabsClientApi::Client::Api::Core::UsersApi do
                           :firstName => "w",
                           :lastName => "L"}
 
-    res = user_api_obj.sign_up(user_params)
+    res = user_api_obj.sign_up(user_params, get_initial_token)
     expect(res[:status]).to eq 400
     expect(res[:member].errors.size).to eq 2
 
@@ -39,7 +40,7 @@ describe WavelabsClientApi::Client::Api::Core::UsersApi do
                           :firstName => "L",
                           :lastName => "W"}
 
-    res = user_api_obj.sign_up(user_params)
+    res = user_api_obj.sign_up(user_params, get_initial_token)
     expect([200,400].include?res[:status]).to eq true
   end
 

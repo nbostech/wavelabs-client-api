@@ -12,7 +12,7 @@ require 'support/user_sign_up.rb'
 ### WaveLabs Server Details 
 ENV['API_HOST_URL']  = 'http://localhost:8080/starter-app-rest-grails'
 ENV['API_CLIENT_ID'] = 'my-client'
-ENV['API_CLIENT_SECRET'] = '$2a$10$R.b4bFfMN1a.fRptqpF.yelctUYOrVtqGnjSc4J8A1bhO03Qyz3Aa' 
+ENV['API_CLIENT_SECRET'] = 'my-secret' 
 
 RSpec.configure do |config|
   # some (optional) config here

@@ -2,13 +2,19 @@ class UserSignUp
 
 def self.sign_up_user(user_params)
   req = WavelabsClientApi::Client::Api::Core::UsersApi.new()
-  new_user = req.sign_up(user_params)
+  new_user = req.sign_up(user_params, get_token)
 end
 
 def self.login_user
   req = WavelabsClientApi::Client::Api::Core::AuthApi.new()
   login_u = req.login({:username => "wavlelabstest", 
-  	                      :password => "test123"})
+  	                      :password => "test123"}, get_token)
+end
+
+def self.get_token
+  obj = WavelabsClientApi::Client::Api::Core::AuthApi.new()
+  req = obj.get_auth_token("client_credentials", "oauth.client.r")
+  return req[:token].value.first
 end
 
 end	

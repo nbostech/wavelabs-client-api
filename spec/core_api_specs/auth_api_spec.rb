@@ -10,6 +10,7 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
 
   let(:signup_user) {UserSignUp.sign_up_user(user_params)}
   let(:login_user) {UserSignUp.login_user}
+  let(:get_initial_token) {UserSignUp.get_token}
 
 	let (:auth_api_obj) { WavelabsClientApi::Client::Api::Core::AuthApi.new}
   let (:auth_api) { WavelabsClientApi::Client::Api::Core::AuthApi}
@@ -19,11 +20,17 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
   end 
 
   it "#Check Constants of Auth API URIS" do
-  	expect(auth_api::LOGIN_URI).to eq '/api/v0/auth/login'
+  	expect(auth_api::AUTH_TOKEN_URI).to eq '/oauth/token'
+    expect(auth_api::LOGIN_URI).to eq '/api/v0/auth/login'
     expect(auth_api::LOGOUT_URI).to eq '/api/v0/auth/logout'
     expect(auth_api::CHANGE_PASSWORD_URI).to eq '/api/v0/auth/changePassword'
     expect(auth_api::FORGOT_PASSWORD_URI).to eq '/api/v0/auth/forgotPassword'
   end
+
+  it "#get_auth_token with client details" do
+    res = auth_api_obj.get_auth_token("client_credentials", "oauth.client.r")
+    expect(res[:status]).to eq 200
+  end  
 
   it "#login method without login details" do
   	res = auth_api_obj.login
@@ -32,28 +39,28 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
   end
 
   it "#login method with unregistered login details" do
-  	res = auth_api_obj.login({:username => "test", :password => "pas"})
+  	res = auth_api_obj.login({:username => "test", :password => "pas"}, get_initial_token)
   	expect(res[:status]).to eq 400
   end
 
   it "#login method with registered login details" do
   	signup_user
-  	res = auth_api_obj.login({:username => "wavlelabstest", :password => "test123"})
+  	res = auth_api_obj.login({:username => "wavlelabstest", :password => "test123"}, get_initial_token)
   	expect(res[:status]).to eq 200
   end
 
   it "Check Forgot Password with valid email#forgot_password" do
-  	res = auth_api_obj.forgot_password({:email => "test@wavelabs.com"})
+  	res = auth_api_obj.forgot_password({:email => "test@wavelabs.com"}, get_initial_token)
   	expect(res[:status]).to eq 200
   end
 
   it "Check Forgot Password with invalid email(#forgot_password)" do
-  	res = auth_api_obj.forgot_password({:email => "test@labs.com"})
+  	res = auth_api_obj.forgot_password({:email => "test@labs.com"}, get_initial_token)
   	expect(res[:status]).to eq 400
   end
 
   it "Check Forgot Password with empty email(#forgot_password)" do
-  	res = auth_api_obj.forgot_password({:email => " "})
+  	res = auth_api_obj.forgot_password({:email => " "}, get_initial_token)
   	expect(res[:status]).to eq 400
   end
 

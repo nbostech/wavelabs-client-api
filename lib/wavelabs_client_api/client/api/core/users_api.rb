@@ -10,7 +10,7 @@ class WavelabsClientApi::Client::Api::Core::UsersApi < WavelabsClientApi::Client
   SIGNUP_URI = "/api/v0/users/signup"
   USER_URI = "/api/v0/users"
   
- def sign_up(sign_up_params)
+ def sign_up(sign_up_params, access_token)
  	 url_path = base_api_url(SIGNUP_URI)
  	 connection_options = { :clientId  =>  client_id,
                           :username  =>  sign_up_params[:username],
@@ -19,7 +19,7 @@ class WavelabsClientApi::Client::Api::Core::UsersApi < WavelabsClientApi::Client
                           :firstName =>  sign_up_params[:firstName],
                           :lastName  =>  sign_up_params[:lastName]
                         }                  
-   api_response = send_request('post', url_path, connection_options)
+   api_response = send_request_with_token('post', url_path, access_token, connection_options.to_json)
    
    new_member_model =  create_login_model(sign_up_params)
    

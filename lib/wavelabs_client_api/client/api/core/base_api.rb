@@ -48,9 +48,9 @@ module WavelabsClientApi
 
            end
 
-           def send_request(method, url, body = nil)
+           def send_request(method, url, body = nil, query_params = nil)
            	begin
-           	 self.class.send(method, url, :body => body.to_json)
+           	 self.class.send(method, url, :body => body.to_json, :query => query_params)
             rescue StandardError
             end
 

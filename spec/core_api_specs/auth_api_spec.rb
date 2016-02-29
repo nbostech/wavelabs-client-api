@@ -21,10 +21,10 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
 
   it "#Check Constants of Auth API URIS" do
   	expect(auth_api::AUTH_TOKEN_URI).to eq '/oauth/token'
-    expect(auth_api::LOGIN_URI).to eq '/api/v0/auth/login'
-    expect(auth_api::LOGOUT_URI).to eq '/api/v0/auth/logout'
-    expect(auth_api::CHANGE_PASSWORD_URI).to eq '/api/v0/auth/changePassword'
-    expect(auth_api::FORGOT_PASSWORD_URI).to eq '/api/v0/auth/forgotPassword'
+    expect(auth_api::LOGIN_URI).to eq '/api/identity/v0/auth/login'
+    expect(auth_api::LOGOUT_URI).to eq '/api/identity/v0/auth/logout'
+    expect(auth_api::CHANGE_PASSWORD_URI).to eq '/api/identity/v0/auth/changePassword'
+    expect(auth_api::FORGOT_PASSWORD_URI).to eq '/api/identity/v0/auth/forgotPassword'
   end
 
   it "#get_auth_token with client details" do

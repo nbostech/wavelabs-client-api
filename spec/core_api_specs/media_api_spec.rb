@@ -11,7 +11,7 @@ describe WavelabsClientApi::Client::Api::Core::MediaApi do
   end
 
   it "#Check Constants of Media API URIS" do
-    expect(media_api::MEDIA_URI).to eq '/api/v0/media'
+    expect(media_api::MEDIA_URI).to eq '/api/media/v0/media'
   end
 
   it "#get_media with user details after login" do

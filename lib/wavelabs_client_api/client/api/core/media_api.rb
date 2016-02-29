@@ -7,7 +7,7 @@
 
 class WavelabsClientApi::Client::Api::Core::MediaApi < WavelabsClientApi::Client::Api::Core::BaseApi
 
- MEDIA_URI = "/api/v0/media"
+ MEDIA_URI = "/api/media/v0/media"
 
  def get_media(user_id, media_for, access_token)
    url_path = base_api_url(MEDIA_URI)

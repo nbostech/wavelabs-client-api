@@ -9,11 +9,11 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
   
   # Api Server Authentication End Point URIs
   AUTH_TOKEN_URI      = "/oauth/token"
-  LOGIN_URI           = "/api/v0/auth/login"
-  LOGOUT_URI          = "/api/v0/auth/logout"
-  CHANGE_PASSWORD_URI = "/api/v0/auth/changePassword"
-  FORGOT_PASSWORD_URI = "/api/v0/auth/forgotPassword"
-  RESET_PASSWORD_URI  = "/api/v0/auth/resetPassword"
+  LOGIN_URI           = "/api/identity/v0/auth/login"
+  LOGOUT_URI          = "/api/identity/v0/auth/logout"
+  CHANGE_PASSWORD_URI = "/api/identity/v0/auth/changePassword"
+  FORGOT_PASSWORD_URI = "/api/identity/v0/auth/forgotPassword"
+  RESET_PASSWORD_URI  = "/api/identity/v0/auth/resetPassword"
 
  
  def get_auth_token(grant_type, scope)

@@ -14,8 +14,8 @@ describe WavelabsClientApi::Client::Api::Core::UsersApi do
 
   
   it "#Check Constants of Users API URIS" do
-    expect(user_api::SIGNUP_URI).to eq '/api/v0/users/signup'
-    expect(user_api::USER_URI).to eq '/api/v0/users'
+    expect(user_api::SIGNUP_URI).to eq '/api/identity/v0/users/signup'
+    expect(user_api::USER_URI).to eq '/api/identity/v0/users'
   end
 
 

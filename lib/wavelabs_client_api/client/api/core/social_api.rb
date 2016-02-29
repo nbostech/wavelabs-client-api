@@ -8,12 +8,12 @@
 class WavelabsClientApi::Client::Api::Core::SocialApi < WavelabsClientApi::Client::Api::Core::BaseApi
 
  # Api Server Social Authentication End Point URIs
- FACEBOOK_LOGIN_URI = "/api/v0/auth/social/facebook/connect"
- GOOGLE_LOGIN_URI = "/api/v0/auth/social/googlePlus/connect"
- TWITER_LOGIN_URI = "/api/v0/auth/social/twitter/connect"
- GITHUB_LOGIN_URI = "/api/v0/auth/social/gitHub/connect"
- LINKEDIN_LOGIN_URI = "/api/v0/auth/social/linkedIn/connect"
- INSTAGRAM_LOGIN_URI = "/api/v0/auth/social/instagram/connect"
+ FACEBOOK_LOGIN_URI = "/api/identity/v0/auth/social/facebook/connect"
+ GOOGLE_LOGIN_URI = "/api/identity/v0/auth/social/googlePlus/connect"
+ TWITER_LOGIN_URI = "/api/identity/v0/auth/social/twitter/connect"
+ GITHUB_LOGIN_URI = "/api/identity/v0/auth/social/gitHub/connect"
+ LINKEDIN_LOGIN_URI = "/api/identity/v0/auth/social/linkedIn/connect"
+ INSTAGRAM_LOGIN_URI = "/api/identity/v0/auth/social/instagram/connect"
 
  
 

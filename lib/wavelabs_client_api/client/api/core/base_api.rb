@@ -30,7 +30,7 @@ module WavelabsClientApi
 
            def self.check_connection?
              begin 
-          	   res = self.get(ENV['API_HOST_URL'])
+          	   res = self.get(ENV['API_HOST_URL'] + '/about')
           	   if res.code == 200
           	   	true
           	   end

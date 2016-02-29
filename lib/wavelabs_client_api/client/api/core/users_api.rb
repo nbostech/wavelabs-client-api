@@ -7,8 +7,8 @@
 
 class WavelabsClientApi::Client::Api::Core::UsersApi < WavelabsClientApi::Client::Api::Core::BaseApi
 
-  SIGNUP_URI = "/api/v0/users/signup"
-  USER_URI = "/api/v0/users"
+  SIGNUP_URI = "/api/identity/v0/users/signup"
+  USER_URI = "/api/identity/v0/users"
   
  def sign_up(sign_up_params, access_token)
  	 url_path = base_api_url(SIGNUP_URI)

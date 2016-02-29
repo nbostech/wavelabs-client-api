@@ -16,5 +16,18 @@ require "wavelabs_client_api/client/api/data_models/social_accounts_api_model"
 require "wavelabs_client_api/client/api/data_models/token_api_model"
 
 module WavelabsClientApi
-  # Your code goes here...
+
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_accessor :api_host_url, :client_key, :client_secret
+  end
+
 end

@@ -32,7 +32,7 @@ This gem contains two main modules under /lib directory
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'wavelabs_client_api', '0.1.6'
+gem 'wavelabs_client_api'
 ```
 
 And then execute:
@@ -43,13 +43,30 @@ Or install it yourself as:
 
     $ gem install wavelabs_client_api
 
+After successful instalation run the following command to generate wavelabs_client_api.rb configuration file under config/initializers directory
+
+    $ rails g wavelabs_client_api:install
+
+ In above configuration file setup the following core variables to work with API Server.
+
+   1. If you want to use ENV variables jump to Usage section. Nothing to change in configuration file.
+
+   2. If you are not using ENV variables provide configuration option values as follows:  
+    
+    WavelabsClientApi.configure do |config|
+      config.api_host_url = "your API server url"
+      config.client_key = "your client key"
+      config.client_secret = "ypur client secret"
+    end       
+
+
 ## Usage
 
- After installing the gem you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
+ After installing the gem & configuration file you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
 
     ### WaveLabs Server Details 
     ENV['API_HOST_URL']  = 'http://111.93.2.105:8080/starter-app-rest-grails'
-    ENV['API_CLIENT_ID'] = 'my-client'
+    ENV['API_CLIENT_KEY'] = 'my-client'
     ENV['API_CLIENT_SECRET'] = '$2a$10$R.b4bFfMN1a.fRptqpF.yelctUYOrVtqGnjSc4J8A1bhO03Qyz3Aa' 
     
     ### Social Login Details

@@ -17,20 +17,20 @@ module WavelabsClientApi
            end
            	
            def site_url
-             ENV['API_HOST_URL']	
+             WavelabsClientApi.configuration.api_host_url	
            end
 
            def client_id
-             ENV['API_CLIENT_ID']
+             WavelabsClientApi.configuration.client_key 
            end
 
            def client_secret
-             ENV['API_CLIENT_SECRET']	
+             WavelabsClientApi.configuration.client_secret
            end
 
            def self.check_connection?
              begin 
-          	   res = self.get(ENV['API_HOST_URL'] + '/about')
+          	   res = self.get(WavelabsClientApi.configuration.api_host_url + '/about')
           	   if res.code == 200
           	   	true
           	   end

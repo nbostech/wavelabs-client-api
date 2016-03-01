@@ -1,4 +1,8 @@
-<a href="https://codeclimate.com/github/nbostech/wavelabs-client-api"><img src="https://codeclimate.com/github/nbostech/wavelabs-client-api/badges/gpa.svg" /></a>
+
+[![Build Status](https://travis-ci.org/nbostech/wavelabs-client-api.svg?branch=master)](https://travis-ci.org/nbostech/wavelabs-client-api)
+[![Code Climate](https://codeclimate.com/github/nbostech/wavelabs-client-api/badges/gpa.svg)](https://codeclimate.com/github/nbostech/wavelabs-client-api)
+
+
 
 # WavelabsClientApi
 

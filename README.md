@@ -1,4 +1,5 @@
 
+[![Gem Version](https://badge.fury.io/rb/wavelabs_client_api.svg)](https://badge.fury.io/rb/wavelabs_client_api)
 [![Build Status](https://travis-ci.org/nbostech/wavelabs-client-api.svg?branch=master)](https://travis-ci.org/nbostech/wavelabs-client-api)
 [![Code Climate](https://codeclimate.com/github/nbostech/wavelabs-client-api/badges/gpa.svg)](https://codeclimate.com/github/nbostech/wavelabs-client-api)
 

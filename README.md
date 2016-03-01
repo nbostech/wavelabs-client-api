@@ -103,17 +103,11 @@ After successful instalation run the following command to generate wavelabs_clie
                       }
      $response = request.sign_up(sign_up_params)
 
-   You will get the approprivate response from server. If you want use this gem in your rails application use this link https://github.com/nbostech/wavelabs-rails-client-api
+   You will get the approprivate response from server. If you want use this gem in your rails application I have created a sample application here https://github.com/nbostech/wavelabs-rails-client-api
    
-## To-Do
+## Note
+continuous changes will be made based on Wavelabs Server API architecture. 
 
- 1. Need to add test cases. 
- 2. And continuous changes will be made based on Wavelabs Server API architecture. 
- 3. There are other modules will come soon:
-     
-     a). Tenant Module
-     b). Entity Authorization
-     c). Payment Module
 
 ## Development
 

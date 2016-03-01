@@ -10,7 +10,7 @@ require 'support/user_sign_up.rb'
 # and any other gems you need
 
 ### WaveLabs Server Details 
-ENV['API_HOST_URL']  = 'http://localhost:8080/starter-app-rest-grails'
+ENV['API_HOST_URL']  = 'http://api.qa1.wavelabs.in/starter-app-rest-grails'
 ENV['API_CLIENT_KEY'] = 'my-client'
 ENV['API_CLIENT_SECRET'] = 'my-secret' 
 

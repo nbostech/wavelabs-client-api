@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/nbostech/wavelabs-client-api"><img src="https://codeclimate.com/github/nbostech/wavelabs-client-api/badges/gpa.svg" /></a>
+
 # WavelabsClientApi
 
 Welcome to "wavelabs_client_api" gem. It is flexible wrapper to communicate with Wavelabs Server API. Using this library you can easily interact with Wavelabs Server API. This release supports User Registration Module:

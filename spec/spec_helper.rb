@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require 'bundler/setup'
 Bundler.setup
 
@@ -6,9 +9,6 @@ require 'wavelabs_client_api'
 require 'byebug'
 
 require 'support/user_sign_up.rb'
-
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
 
 # and any other gems you need
 

@@ -13,7 +13,7 @@ CodeClimate::TestReporter.start
 # and any other gems you need
 
 ### WaveLabs Server Details 
-ENV['API_HOST_URL']  = 'http://localhost:8080'
+ENV['API_HOST_URL']  = 'http://api.qa1.wavelabs.in'
 ENV['API_CLIENT_KEY'] = 'my-client'
 ENV['API_CLIENT_SECRET'] = 'my-secret'
 

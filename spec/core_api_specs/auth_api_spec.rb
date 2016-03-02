@@ -21,6 +21,7 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
 
   it "#Check Constants of Auth API URIS" do
   	expect(auth_api::AUTH_TOKEN_URI).to eq '/oauth/token'
+    expect(auth_api::TOKEN_VALIDATION_URI).to eq '/api/oauth/v0/tokens'
     expect(auth_api::LOGIN_URI).to eq '/api/identity/v0/auth/login'
     expect(auth_api::LOGOUT_URI).to eq '/api/identity/v0/auth/logout'
     expect(auth_api::CHANGE_PASSWORD_URI).to eq '/api/identity/v0/auth/changePassword'
@@ -30,7 +31,16 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
   it "#get_auth_token with client details" do
     res = auth_api_obj.get_auth_token("client_credentials", "oauth.client.r")
     expect(res[:status]).to eq 200
-  end  
+  end 
+
+  it "#is_token_valid with valid tokens" do
+    signup_user
+    res = auth_api_obj.login({:username => "wavlelabstest", :password => "test123"}, get_initial_token)
+    expect(res[:status]).to eq 200
+    user_token = res[:member].token.value.first
+    final_res = auth_api_obj.is_token_valid(user_token, get_initial_token)
+    expect(final_res[:status]).to eq 200
+  end 
 
   it "#login method without login details" do
   	res = auth_api_obj.login

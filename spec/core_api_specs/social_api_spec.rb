@@ -15,6 +15,7 @@ describe WavelabsClientApi::Client::Api::Core::SocialApi do
     expect(social_api::LINKEDIN_LOGIN_URI).to eq '/api/identity/v0/auth/social/linkedIn/connect'
     expect(social_api::INSTAGRAM_LOGIN_URI).to eq '/api/identity/v0/auth/social/instagram/connect'
     expect(social_api::TWITER_LOGIN_URI).to eq '/api/identity/v0/auth/social/twitter/connect'
+    expect(social_api::INVALID_SOCIAL_URI).to eq '/api/identity/v0/auth/social/invalid/connect'
   end
 
   it "#get_scoial_login_uri" do
@@ -24,6 +25,7 @@ describe WavelabsClientApi::Client::Api::Core::SocialApi do
   	expect(social_api_obj.get_scoial_login_uri("instagram")).to eq '/api/identity/v0/auth/social/instagram/connect'
   	expect(social_api_obj.get_scoial_login_uri("twitter")).to eq '/api/identity/v0/auth/social/twitter/connect'
   	expect(social_api_obj.get_scoial_login_uri("github")).to eq '/api/identity/v0/auth/social/gitHub/connect'
+    expect(social_api_obj.get_scoial_login_uri("abcdef")).to eq '/api/identity/v0/auth/social/invalid/connect'
   end	
 
 

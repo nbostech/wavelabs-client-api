@@ -14,16 +14,7 @@ class WavelabsClientApi::Client::Api::Core::MediaApi < WavelabsClientApi::Client
    query_params = { :id => user_id, :mediafor => media_for}
    api_response = send_request_with_token("get", url_path, access_token, nil, query_params)
    
-   begin
-     if api_response.code == 200
-   	   media_model = create_media_model(api_response.parsed_response)
-   	   {status: 200, media: media_model}
-     end
-   rescue StandardError
-     message_model = create_message_model(nil)
-     message_model.message = "Internal Server Error Please Try After Some Time."
-     { status: 500, message: message_model}
-   end   	
+   build_media_response(api_response)	
  end
 
 
@@ -37,17 +28,21 @@ class WavelabsClientApi::Client::Api::Core::MediaApi < WavelabsClientApi::Client
 
    api_response = send_request_with_token("post", url_path, access_token, body, query_params)
    File.delete(file_path) if !file_path.include?("/spec/support/")
-   begin
-     if api_response.code == 200
-     	 media_model = create_media_model(api_response.parsed_response)
-     	 {status: 200, media: media_model}
-     end
-    rescue StandardError
-      message_model = create_message_model(nil)
-      message_model.message = "Internal Server Error Please Try After Some Time."
-      { status: 500, message: message_model}
-    end   	
+   build_media_response(api_response) 	
  end
+
+ def build_media_response(api_response)
+  begin
+     if api_response.code == 200
+       media_model = create_media_model(api_response.parsed_response)
+       {status: 200, media: media_model}
+     end
+   rescue StandardError
+     message_model = create_message_model(nil)
+     message_model.message = "Internal Server Error Please Try After Some Time."
+     { status: 500, message: message_model}
+   end   
+ end 
 
 
 end	

@@ -14,6 +14,7 @@ class WavelabsClientApi::Client::Api::Core::SocialApi < WavelabsClientApi::Clien
  GITHUB_LOGIN_URI = "/api/identity/v0/auth/social/gitHub/connect"
  LINKEDIN_LOGIN_URI = "/api/identity/v0/auth/social/linkedIn/connect"
  INSTAGRAM_LOGIN_URI = "/api/identity/v0/auth/social/instagram/connect"
+ INVALID_SOCIAL_URI  = "/api/identity/v0/auth/social/invalid/connect"
 
  
 
@@ -55,19 +56,22 @@ end
 
 # Method to return end point URI for specific social login
 def get_scoial_login_uri(provider)
-   if provider == "facebook"
-     FACEBOOK_LOGIN_URI
-   elsif provider == "google_oauth2"
-     GOOGLE_LOGIN_URI
-   elsif provider == "twitter"
-     TWITER_LOGIN_URI
-   elsif provider == "github"
-     GITHUB_LOGIN_URI
-   elsif provider == "linkedin"
-     LINKEDIN_LOGIN_URI 
-   elsif provider == "instagram"
-     INSTAGRAM_LOGIN_URI     
-   end  
+  case provider
+  when "facebook"
+    FACEBOOK_LOGIN_URI
+  when "google_oauth2"
+    GOOGLE_LOGIN_URI
+  when "twitter"    
+    TWITER_LOGIN_URI
+  when "github"
+    GITHUB_LOGIN_URI
+  when "linkedin"
+    LINKEDIN_LOGIN_URI
+  when "instagram"
+    INSTAGRAM_LOGIN_URI
+  else
+    INVALID_SOCIAL_URI  
+  end 
 end  
 
 

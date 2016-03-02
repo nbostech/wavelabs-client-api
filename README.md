@@ -72,9 +72,9 @@ After successful instalation run the following command to generate wavelabs_clie
  After installing the gem & configuration file you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
 
     ### WaveLabs Server Details 
-    ENV['API_HOST_URL']  = 'http://111.93.2.105:8080/starter-app-rest-grails'
+    ENV['API_HOST_URL']  = 'http://api.qa1.wavelabs.in/'
     ENV['API_CLIENT_KEY'] = 'my-client'
-    ENV['API_CLIENT_SECRET'] = '$2a$10$R.b4bFfMN1a.fRptqpF.yelctUYOrVtqGnjSc4J8A1bhO03Qyz3Aa' 
+    ENV['API_CLIENT_SECRET'] = 'my-secret' 
     
     ### Social Login Details
     ENV['FACEBOOK_KEY'] = 'FACEBOOK APP KEY'

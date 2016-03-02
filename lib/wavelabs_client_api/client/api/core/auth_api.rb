@@ -8,12 +8,14 @@
 class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client::Api::Core::BaseApi
   
   # Api Server Authentication End Point URIs
-  AUTH_TOKEN_URI      = "/oauth/token"
-  LOGIN_URI           = "/api/identity/v0/auth/login"
-  LOGOUT_URI          = "/api/identity/v0/auth/logout"
-  CHANGE_PASSWORD_URI = "/api/identity/v0/auth/changePassword"
-  FORGOT_PASSWORD_URI = "/api/identity/v0/auth/forgotPassword"
-  RESET_PASSWORD_URI  = "/api/identity/v0/auth/resetPassword"
+  AUTH_TOKEN_URI       = "/oauth/token"
+  TOKEN_VALIDATION_URI = "/api/oauth/v0/tokens"
+  LOGIN_URI            = "/api/identity/v0/auth/login"
+  LOGOUT_URI           = "/api/identity/v0/auth/logout"
+  CHANGE_PASSWORD_URI  = "/api/identity/v0/auth/changePassword"
+  FORGOT_PASSWORD_URI  = "/api/identity/v0/auth/forgotPassword"
+  RESET_PASSWORD_URI   = "/api/identity/v0/auth/resetPassword"
+
 
  
  def get_auth_token(grant_type, scope)
@@ -26,18 +28,29 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
    body = nil                                  
    api_response = send_request('post', url_path, body , query_params)               
    token_model = create_token_model(api_response.parsed_response)
+   build_token_response(api_response, token_model)                 
+ end
+
+ def is_token_valid(tokeId, access_token)
+   url_path = base_api_url(TOKEN_VALIDATION_URI + "/#{tokeId}")
+   api_response = send_request_with_token('get', url_path, access_token)
+   token_model = create_token_model(api_response.parsed_response)
+   build_token_response(api_response, token_model)
+ end 
+
+ def build_token_response(api_response, data_model)
    begin
      if api_response.code == 400
-        token_model.add_errors(api_response.parsed_response)
-        { status: 400, token: token_model}
+        data_model.add_errors(api_response.parsed_response)
+        { status: 400, token: data_model}
      else
-        token_model.add_messages(api_response.parsed_response)
-        { status: api_response.code, token: token_model}  
+        data_model.add_messages(api_response.parsed_response)
+        { status: api_response.code, token: data_model}  
      end
    rescue StandardError
-     token_model.message = "Internal Server Error Please Try After Some Time."
-     { status: 500, token: token_model}
-   end                     
+     data_model.message = "Internal Server Error Please Try After Some Time."
+     { status: 500, token: data_model}
+   end    
  end 
 
  # Api Call to Change Password request with access_token
@@ -50,18 +63,7 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
  	 
    api_response = send_request_with_token('post', url_path, access_token, connection_options.to_json)
    
-   begin
-     if api_response.code == 400
-        login_model.add_errors(api_response.parsed_response)
-        { status: 400, login: login_model}
-     else
-        login_model.add_messages(api_response.parsed_response)
-        { status: api_response.code, login: login_model}  
-     end
-   rescue StandardError
-     login_model.message = "Internal Server Error Please Try After Some Time."
-     { status: 500, login: login_model}
-   end 
+   build_password_response(api_response, login_model) 
  end
 
 
@@ -72,19 +74,23 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
  	 api_response = send_request_with_token('post', url_path, access_token, connection_options.to_json)
    login_model = create_login_model(forgot_password_params)
    
-   begin
+   build_password_response(api_response, login_model)
+ end
+
+ def build_password_response(api_response, data_model)
+  begin
      if api_response.code == 400
-        login_model.add_errors(api_response.parsed_response)
-        { status: api_response.code, login: login_model}  
+        data_model.add_errors(api_response.parsed_response)
+        { status: 400, login: data_model}
      else
-        login_model.add_messages(api_response.parsed_response)
-        { status: api_response.code, login: login_model} 
+        data_model.add_messages(api_response.parsed_response)
+        { status: api_response.code, login: data_model}  
      end
    rescue StandardError
-     login_model.message = "Internal Server Error Please Try After Some Time."
-     { status: 500, login: login_model}
-   end 
- end
+     data_model.message = "Internal Server Error Please Try After Some Time."
+     { status: 500, login: data_model}
+   end
+ end 
 
 
  # Api Call To Login 
@@ -144,8 +150,7 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
    end  
  end
 
-
- # To-Do 
+ 
  # Need to Implement this based on Server Side Logic
  def reset_password
  	 url_path = base_api_url(RESET_PASSWORD_URI)

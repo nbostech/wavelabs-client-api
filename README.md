@@ -64,7 +64,7 @@ After successful instalation run the following command to generate wavelabs_clie
     WavelabsClientApi.configure do |config|
       config.api_host_url = "your API server url"
       config.client_key = "your client key"
-      config.client_secret = "ypur client secret"
+      config.client_secret = "your client secret"
     end       
 
 
@@ -100,6 +100,8 @@ After successful instalation run the following command to generate wavelabs_clie
 
   Now you are ready to communicate with the Server. Following is an example to send a sign_up request from ruby console:
 
+     $auth_api = WavelabsClientApi::Client::Api::Core::AuthApi.new
+     $get_token_req = auth_api.get_auth_token("client_credentials", "oauth.client.r")
      $request = WavelabsClientApi::Client::Api::Core::UsersApi.new
      $sign_up_params = { :username  =>  "username",
                         :password  =>  "password123",
@@ -107,9 +109,9 @@ After successful instalation run the following command to generate wavelabs_clie
                         :firstName =>  "first name",
                         :lastName  =>  "last name"
                       }
-     $response = request.sign_up(sign_up_params)
+     $response = request.sign_up(sign_up_params, get_token_req[:token].value.first)
 
-   You will get the approprivate response from server. If you want use this gem in your rails application I have created a sample application here https://github.com/nbostech/wavelabs-rails-client-api
+   You will get the approprivate response from server. If you want to use this gem in your rails application I have created a sample application here https://github.com/nbostech/wavelabs-rails-client-api
    
 ## Note
 continuous changes will be made based on Wavelabs Server API architecture. 

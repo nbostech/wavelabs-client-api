@@ -1,5 +1,8 @@
 
+# Current Version
 [![Gem Version](https://badge.fury.io/rb/wavelabs_client_api.svg)](https://badge.fury.io/rb/wavelabs_client_api)
+
+# Code Statistics 
 [![Build Status](https://travis-ci.org/nbostech/wavelabs-client-api.svg?branch=master)](https://travis-ci.org/nbostech/wavelabs-client-api)
 [![Code Climate](https://codeclimate.com/github/nbostech/wavelabs-client-api/badges/gpa.svg)](https://codeclimate.com/github/nbostech/wavelabs-client-api)
 [![Test Coverage](https://codeclimate.com/github/nbostech/wavelabs-client-api/badges/coverage.svg)](https://codeclimate.com/github/nbostech/wavelabs-client-api/coverage)
@@ -59,18 +62,21 @@ After successful instalation run the following command to generate wavelabs_clie
 
    1. If you want to use ENV variables jump to Usage section. Nothing to change in configuration file.
 
-   2. If you are not using ENV variables provide configuration option values as follows:  
-    
+   2. If you are not using ENV variables provide configuration option values in wavelabs_client_api.rb file in initializers directory as follows:  
+    ```
+
     WavelabsClientApi.configure do |config|
       config.api_host_url = "your API server url"
       config.client_key = "your client key"
       config.client_secret = "your client secret"
-    end       
+    end
+    ```       
 
 
 ## Usage
 
  After installing the gem & configuration file you can create your own controllers & use the Core module class methods to comminicate Wavelabs Server API. To use this wrapper first you need to add following environment(ENV) variables in your rails aplication:
+  ```
 
     ### WaveLabs Server Details 
     ENV['API_HOST_URL']  = 'http://api.qa1.wavelabs.in/'
@@ -92,7 +98,7 @@ After successful instalation run the following command to generate wavelabs_clie
 
     ENV['INSTAGRAM_KEY'] = 'INSTAGRAM APP KEY'
     ENV['INSTAGRAM_SECRET'] = 'INSTAGRAM APP KEY'
-
+ ```
 
   There are many ways to setup the ENV variables in rails. You can directly add them into your environment specific rb file, for example 'config/enviroments/development.rb' or you can use 'dot-env'/'figaro' gems.
 

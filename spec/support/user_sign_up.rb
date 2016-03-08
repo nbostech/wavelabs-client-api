@@ -13,7 +13,7 @@ end
 
 def self.get_token
   obj = WavelabsClientApi::Client::Api::Core::AuthApi.new()
-  req = obj.get_auth_token("client_credentials", "oauth.client.r")
+  req = obj.get_auth_token("client_credentials", "scope:oauth.token.verify")
   return req[:token].value.first
 end
 

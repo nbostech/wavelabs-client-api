@@ -13,9 +13,9 @@ require 'support/user_sign_up.rb'
 # and any other gems you need
 
 ### WaveLabs Server Details 
-ENV['API_HOST_URL']  = 'http://api.qa1.wavelabs.in'
-ENV['API_CLIENT_KEY'] = 'my-client'
-ENV['API_CLIENT_SECRET'] = 'my-secret'
+ENV['API_HOST_URL']  = 'http://api.qa1.nbos.in'
+ENV['API_CLIENT_KEY'] = 'api-client'
+ENV['API_CLIENT_SECRET'] = 'api-secret'
 
 RSpec.configure do |config|
   # some (optional) config here

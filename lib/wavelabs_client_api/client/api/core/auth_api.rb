@@ -25,10 +25,16 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
                     :grant_type => grant_type,
                     :scope => scope
                   }
-   body = nil                                  
-   api_response = send_request('post', url_path, body , query_params)               
-   token_model = create_token_model(api_response.parsed_response)
-   build_token_response(api_response, token_model)                 
+   body = nil
+   begin                                  
+     api_response = send_request('post', url_path, body , query_params)               
+     token_model = create_token_model(api_response.parsed_response)
+     build_token_response(api_response, token_model)
+   rescue StandardError
+     token_model = create_token_model(nil)
+     token_model.message = "API Server is Down Please try After Some Time."
+     { status: 500, token: token_model}
+   end                 
  end
 
  def is_token_valid(tokeId, access_token)

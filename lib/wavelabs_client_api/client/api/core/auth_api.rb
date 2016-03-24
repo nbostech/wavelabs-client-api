@@ -18,10 +18,10 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
 
 
  
- def get_auth_token(grant_type, scope)
+ def get_auth_token(grant_type, scope, clientId = nil, clientSecret = nil)
    url_path = base_api_url(AUTH_TOKEN_URI)
-   query_params = { :client_id =>  client_id,
-                    :client_secret => client_secret,
+   query_params = { :client_id =>  clientId || client_id,
+                    :client_secret => clientSecret || client_secret,
                     :grant_type => grant_type,
                     :scope => scope
                   }
@@ -40,7 +40,7 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
  def is_token_valid(tokeId, access_token)
    url_path = base_api_url(TOKEN_VALIDATION_URI + "/#{tokeId}")
    api_response = send_request_with_token('get', url_path, access_token)
-   token_model = create_token_model(api_response.parsed_response)
+   token_model = create_token_details_model(api_response.parsed_response)
    build_token_response(api_response, token_model)
  end 
 

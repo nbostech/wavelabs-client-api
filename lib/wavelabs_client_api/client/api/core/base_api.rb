@@ -79,6 +79,10 @@ module WavelabsClientApi
            def create_social_model(json_response)  
              WavelabsClientApi::Client::Api::DataModels::SocialAccountsApiModel.new(json_response) 
            end
+
+           def create_token_details_model(json_response)
+             WavelabsClientApi::Client::Api::DataModels::TokenDetailsApiModel.new(json_response)
+           end 
         end
       end
     end

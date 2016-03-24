@@ -46,7 +46,7 @@ describe WavelabsClientApi::Client::Api::Core::UsersApi do
 
   it "After Login user can view his profile(#show)" do
     l_req = login_user
-    res = user_api_obj.show({:id => l_req[:member].id},l_req[:member].token.value.first)
+    res = user_api_obj.show({:id => l_req[:member].id},l_req[:member].token.value)
     expect(res[:status]).to eq 200
   end
 
@@ -58,7 +58,7 @@ describe WavelabsClientApi::Client::Api::Core::UsersApi do
                         :firstName => "W",
                         :lastName => "L"
                        }
-    res = user_api_obj.update(edit_user_params,l_req[:member].token.value.first)
+    res = user_api_obj.update(edit_user_params,l_req[:member].token.value)
     expect(res[:status]).to eq 200
   end
   	

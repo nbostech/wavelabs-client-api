@@ -16,21 +16,21 @@ describe WavelabsClientApi::Client::Api::Core::MediaApi do
 
   it "#get_media with user details after login" do
   	l_req = login_user
-  	res = media_api_obj.get_media(l_req[:member].id, "profile", l_req[:member].token.value.first)
+  	res = media_api_obj.get_media(l_req[:member].id, "profile", l_req[:member].token.value)
     expect(res[:status]).to eq 200
   end
 
   it "#update_media with user details after login" do
   	l_req = login_user
   	file_path = Dir.pwd + "/spec/support/temp_user.png"
-  	res = media_api_obj.upload_media(file_path, "profile", l_req[:member].token.value.first, l_req[:member].id)
+  	res = media_api_obj.upload_media(file_path, "profile", l_req[:member].token.value, l_req[:member].id)
     expect(res[:status]).to eq 200
   end
 
   it "#update_media with invalide file type after login" do
   	l_req = login_user
   	file_path = Dir.pwd + "/spec/support/temp_user.doc"
-  	res = media_api_obj.upload_media(file_path, "profile", l_req[:member].token.value.first, l_req[:member].id)
+  	res = media_api_obj.upload_media(file_path, "profile", l_req[:member].token.value, l_req[:member].id)
     expect(res[:status]).to eq 200
     expect(res[:media].message).to eq "Problem in media Upload"
   end		

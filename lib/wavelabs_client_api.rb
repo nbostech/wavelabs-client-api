@@ -14,6 +14,7 @@ require "wavelabs_client_api/client/api/data_models/member_api_model"
 require "wavelabs_client_api/client/api/data_models/message_api_model"
 require "wavelabs_client_api/client/api/data_models/social_accounts_api_model"
 require "wavelabs_client_api/client/api/data_models/token_api_model"
+require "wavelabs_client_api/client/api/data_models/token_details_api_model"
 
 module WavelabsClientApi
 

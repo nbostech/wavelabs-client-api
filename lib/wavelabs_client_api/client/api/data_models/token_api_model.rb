@@ -7,10 +7,10 @@ class WavelabsClientApi::Client::Api::DataModels::TokenApiModel < WavelabsClient
 
   def initialize(token_params = nil)
   	if token_params.present? 
-	    @value = token_params["access_token"],
-	    @expires_in = token_params["expires_in"],
-	    @refresh_token = token_params["refresh_token"],
-	    @scope = token_params["scope"],
+	    @value = token_params["access_token"]
+	    @expires_in = token_params["expires_in"]
+	    @refresh_token = token_params["refresh_token"]
+	    @scope = token_params["scope"]
 	    @token_type = token_params["token_type"]
 	  else
 	  	@value , @expires_in, @refresh_token, @scope, @token_type, @message = nil

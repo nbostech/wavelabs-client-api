@@ -115,7 +115,7 @@ After successful instalation run the following command to generate wavelabs_clie
                         :firstName =>  "first name",
                         :lastName  =>  "last name"
                       }
-     $response = request.sign_up(sign_up_params, get_token_req[:token].value.first)
+     $response = request.sign_up(sign_up_params, get_token_req[:token].value)
 
    You will get the approprivate response from server. If you want to use this gem in your rails application I have created a sample application here https://github.com/nbostech/wavelabs-rails-client-api
    

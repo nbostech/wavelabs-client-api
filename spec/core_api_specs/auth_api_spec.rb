@@ -37,9 +37,9 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
     signup_user
     res = auth_api_obj.login({:username => "wavlelabstest", :password => "test123"}, get_initial_token)
     expect(res[:status]).to eq 200
-    user_token = res[:member].token.value.first
+    user_token = res[:member].token.value
     final_res = auth_api_obj.is_token_valid(user_token, get_initial_token)
-    expect(final_res[:token].value).not_to be_empty
+    expect(final_res[:token].token).not_to be_empty
   end 
 
   it "#login method without login details" do
@@ -76,13 +76,13 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
 
   it "Check Change Password with invalid details(#change_password)" do
     l_req = login_user
-    res = auth_api_obj.change_password({:password => "", :newPassword =>  " "},l_req[:member].token.value.first)
+    res = auth_api_obj.change_password({:password => "", :newPassword =>  " "},l_req[:member].token.value)
     expect(res[:status]).to eq 400
   end
 
   it "Check Logout(#logout)" do
   	l_req = login_user
-  	res = auth_api_obj.logout(l_req[:member].token.value.first)
+  	res = auth_api_obj.logout(l_req[:member].token.value)
   	expect(res[:status]).to eq 200
   end	
   	

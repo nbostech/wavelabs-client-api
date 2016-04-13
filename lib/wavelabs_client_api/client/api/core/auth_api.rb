@@ -27,8 +27,9 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
                   }
    body = nil
    begin                                  
-     api_response = send_request('post', url_path, body , query_params)               
-     token_model = create_token_model(api_response.parsed_response)
+     api_response = send_request('post', url_path, body , query_params)
+     details = api_response.code == 200 ? api_response.parsed_response : nil               
+     token_model = create_token_model(details)
      build_token_response(api_response, token_model)
    rescue StandardError
      token_model = create_token_model(nil)
@@ -40,7 +41,8 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
  def is_token_valid(tokeId, access_token)
    url_path = base_api_url(TOKEN_VALIDATION_URI + "/#{tokeId}")
    api_response = send_request_with_token('get', url_path, access_token)
-   token_model = create_token_details_model(api_response.parsed_response)
+   details = api_response.code == 200 ? api_response.parsed_response : nil
+   token_model = create_token_details_model(details)
    build_token_response(api_response, token_model)
  end 
 

@@ -13,8 +13,13 @@ class WavelabsClientApi::Client::Api::DataModels::TokenDetailsApiModel < Wavelab
 	    @token = token_details_params["token"]
 	    @tokenType = token_details_params["tokenType"]
       @expired = token_details_params["expired"]
-      @authorities = token_details_params["authorities"]
-      @uuid = token_details_params["member"]["uuid"]
+      if token_details_params["member"].present? && token_details_params["authorities"].present?
+        @authorities = token_details_params["authorities"]
+        @uuid = token_details_params["member"]["uuid"]
+      else
+        @authorities = nil
+        @uuid = nil 
+      end
       @tenantId = token_details_params["tenantId"]
 	  else
 	  	@username, @expiration, @clientId, @token, @tokenType, @expired, @authorities, @uuid, @tenantId= nil

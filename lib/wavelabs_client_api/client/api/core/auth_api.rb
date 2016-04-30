@@ -18,6 +18,7 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
 
 
  
+ #Method to get Access Token
  def get_auth_token(grant_type, scope, clientId = nil, clientSecret = nil)
    url_path = base_api_url(AUTH_TOKEN_URI)
    query_params = { :client_id =>  clientId || client_id,
@@ -38,6 +39,7 @@ class WavelabsClientApi::Client::Api::Core::AuthApi < WavelabsClientApi::Client:
    end                 
  end
 
+ # Method to validate both client & user token
  def is_token_valid(tokeId, access_token)
    url_path = base_api_url(TOKEN_VALIDATION_URI + "/#{tokeId}")
    api_response = send_request_with_token('get', url_path, access_token)

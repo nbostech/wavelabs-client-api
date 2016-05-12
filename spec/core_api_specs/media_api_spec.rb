@@ -32,7 +32,7 @@ describe WavelabsClientApi::Client::Api::Core::MediaApi do
   	file_path = Dir.pwd + "/spec/support/temp_user.doc"
   	res = media_api_obj.upload_media(file_path, "profile", l_req[:member].token.value, l_req[:member].id)
     expect(res[:status]).to eq 200
-    expect(res[:media].message).to eq "Problem in media Upload"
+    expect(res[:media].message).to eq "media.upload.error"
   end		
 
 end	

@@ -8,11 +8,12 @@
 
 class WavelabsClientApi::Client::Api::DataModels::MemberApiModel < WavelabsClientApi::Client::Api::DataModels::BaseApiModel
 
-  attr_accessor :id, :username, :description, :email, :firstName, :lastName, :phone, :social_accounts, :token, :message
+  attr_accessor :id, :uuid, :username, :description, :email, :firstName, :lastName, :phone, :social_accounts, :token, :message
 
   def initialize(option_params, except_token = false)
     if option_params.present?
       @id =  option_params["member"]["id"]
+      @uuid = option_params["member"]["uuid"]
       @description = option_params["member"]["description"]
       @email = option_params["member"]["email"]
       @firstName = option_params["member"]["firstName"]

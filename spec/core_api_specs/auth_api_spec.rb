@@ -67,7 +67,7 @@ describe WavelabsClientApi::Client::Api::Core::AuthApi do
 
   it "Check Forgot Password with invalid email(#forgot_password)" do
   	res = auth_api_obj.forgot_password({:email => "test@labs.com"}, get_initial_token)
-  	expect(res[:status]).to eq 500
+  	expect(res[:status]).to eq 400
   end
 
   it "Check Forgot Password with empty email(#forgot_password)" do

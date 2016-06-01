@@ -13,7 +13,7 @@ require 'support/user_sign_up.rb'
 # and any other gems you need
 
 ### WaveLabs Server Details 
-ENV['API_HOST_URL']  = 'http://localhost:8080'
+ENV['API_HOST_URL']  = 'http://api.qa1.nbos.in'
 ENV['API_CLIENT_KEY'] = 'vijaym-api-client'
 ENV['API_CLIENT_SECRET'] = 'vijaym-api-secret'
 

@@ -11,25 +11,21 @@
 
 # WavelabsClientApi
 
-Welcome to "wavelabs_client_api" gem. It is flexible wrapper to communicate with Wavelabs Server API. Using this library you can easily interact with Wavelabs Server API. This release supports User Registration Module:
+Welcome to wavelabs client api gem. It is flexible wrapper to communicate with Wavelabs Server API. Using this library you can easily interact with Wavelabs Server API. This release supports User Registration Module:
 
-    1. Sign Up
-    2. Sign In
-    3. Forgot Password
-    4. Change Password
-    5. Edit Profile
-    6. Upload Profile Picture
-    7. Social Sign Up(Login with facebook, github ..etc)
+  1. Sign Up
+  2. Sign In
+  3. Forgot Password
+  4. Change Password
+  5. Edit Profile
+  6. Upload Profile Picture
+  7. Social Networks(Login with facebook, github ..etc)
 
-This library is used to send requests to Wavelabs Server API and get response. Following are the run time dependencies
-    
-    1. ruby-2.2.3
-    2. activemodel-4.2.4
-    3. httmultiparty-0.3.16 
+This library is used to send requests to Wavelabs Server API and get response.
 
-There is an example rails application in github https://github.com/nbostech/wavelabs-rails-client-api. You can clone and use that application. 
+There is an example rails application in [github](https://github.com/nbostech/wavelabs-rails-client-api). You can clone and use that application. 
 
-Live example is available on heroku https://wavelabs-rails-client-api.herokuapp.com
+Live example is available on [heroku](https://wavelabs-rails-client-api.herokuapp.com)
 
 This gem contains two main modules under /lib directory
 
@@ -38,9 +34,18 @@ This gem contains two main modules under /lib directory
  2. WaveLabsClientApi::Client::Api::DataModels which have the ActiveModel classes to create model objects.
 
 
+## Ruby & Rails versions
+
+ - Ruby 2.2.3
+  
+ - Rails 4.2.4
+
+You can install required versions of ruby, rails & gemsets using [rvm(ruby version manager)](https://rvm.io/)
+
+
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your Rails application's Gemfile:
 
 ```ruby
 gem 'wavelabs_client_api'
@@ -54,7 +59,7 @@ Or install it yourself as:
 
     $ gem install wavelabs_client_api
 
-After successful instalation run the following command to generate wavelabs_client_api.rb configuration file under config/initializers directory
+After successful instalation run the following command to generate wavelabs_client_api.rb configuration file under config/initializers directory of your rails application.
 
     $ rails g wavelabs_client_api:install
 
@@ -62,7 +67,7 @@ After successful instalation run the following command to generate wavelabs_clie
 
    1. If you want to use ENV variables jump to Usage section. Nothing to change in configuration file.
 
-   2. If you are not using ENV variables provide configuration option values in wavelabs_client_api.rb file in initializers directory as follows:  
+   2. If you are not using ENV variables, add configuration option values in wavelabs_client_api.rb file in initializers directory as follows:  
     ```
 
     WavelabsClientApi.configure do |config|
@@ -80,8 +85,8 @@ After successful instalation run the following command to generate wavelabs_clie
 
     ### WaveLabs Server Details 
     ENV['API_HOST_URL']  = 'http://api.qa1.wavelabs.in/'
-    ENV['API_CLIENT_KEY'] = 'my-client'
-    ENV['API_CLIENT_SECRET'] = 'my-secret' 
+    ENV['API_CLIENT_KEY'] = 'sample-app-client'
+    ENV['API_CLIENT_SECRET'] = 'sample-app-secret' 
     
     ### Social Login Details
     ENV['FACEBOOK_KEY'] = 'FACEBOOK APP KEY'
@@ -100,14 +105,14 @@ After successful instalation run the following command to generate wavelabs_clie
     ENV['INSTAGRAM_SECRET'] = 'INSTAGRAM APP KEY'
  ```
 
-  There are many ways to setup the ENV variables in rails. You can directly add them into your environment specific rb file, for example 'config/enviroments/development.rb' or you can use 'dot-env'/'figaro' gems.
+  There are many ways to setup the ENV variables in rails. You can directly add them into your environment specific rb file, for example 'config/enviroments/development.rb' or you can use 'dot-env'or 'figaro' gems.
 
   Note: You can use above Wavelabs Server details. It's public. And you need to create your own apps for social logins & modify social login details.
 
   Now you are ready to communicate with the Server. Following is an example to send a sign_up request from ruby console:
 
      $auth_api = WavelabsClientApi::Client::Api::Core::AuthApi.new
-     $get_token_req = auth_api.get_auth_token("client_credentials", "oauth.client.r")
+     $get_token_req = auth_api.get_auth_token("client_credentials")
      $request = WavelabsClientApi::Client::Api::Core::UsersApi.new
      $sign_up_params = { :username  =>  "username",
                         :password  =>  "password123",
@@ -117,7 +122,7 @@ After successful instalation run the following command to generate wavelabs_clie
                       }
      $response = request.sign_up(sign_up_params, get_token_req[:token].value)
 
-   You will get the approprivate response from server. If you want to use this gem in your rails application I have created a sample application here https://github.com/nbostech/wavelabs-rails-client-api
+  You will get the approprivate response from server. we have created a sample application[here](https://github.com/nbostech/wavelabs-rails-client-api).
    
 ## Note
 continuous changes will be made based on Wavelabs Server API architecture. 
